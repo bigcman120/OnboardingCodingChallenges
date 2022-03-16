@@ -8,8 +8,11 @@ In this example, assume nodes with the same value are the exact same node object
 
 Do this in 0( m + n) time (where m and n are the lengths of the lists) and constant space.
 */
-class Node{
-    int value;
+using System;
+					
+public class Node
+{
+	int value;
     Boolean evaluated;
     Node next;
 
@@ -19,14 +22,14 @@ class Node{
         evaluated = false;
     }
 
-    Node(Int val, Node n){
+    Node(int val, Node n){
         value = val;
         next = n;
         evaluated = false;
     }
-
-    static void Main(string[] args){
-        static Node findIntersection(Node A, Node B){
+	
+	public static void Main(){
+		Node findIntersection(Node A, Node B){
             while(A.next != null){
                 A.evaluated = true;
                 A = A.next;
@@ -37,10 +40,12 @@ class Node{
                 B.evaluated = true;
                 B = B.next;
             }
+			Node badNode = new Node();
+			return badNode;
         }
 
-        static void cleanUp(Node n){
-            while(n.next != nul){
+        void cleanUp(Node n){
+            while(n.next != null){
                 n.evaluated = false;
                 n = n.next;
             }
@@ -56,6 +61,6 @@ class Node{
         Node b1 = new Node(99, b2);
 
         Node intersectNode = findIntersection(a1, b1);
-        console.log(intersectNode.value);
-    }
+        Console.WriteLine(intersectNode.value);
+	}
 }

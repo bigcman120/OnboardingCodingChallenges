@@ -11,51 +11,56 @@ If there are no elements in the stack, throw an error.
 
 Each method should run in constant time.
 */
-class myStack{
-    List<Int> inStack;
-    Int stackMax;
-    Int stackLength;
-    Int poppedItem;
+using System;
+using System.Collections.Generic;
+					
+public class myStack
+{
+	List<int> inStack = new List<int>();
+    int stackMax;
+    int stackLength;
+    int poppedItem;
 
     myStack(){
-        inStack = null;
-        stackMax = null;
+        inStack = new List<int>();
         stackLength = 0;
-        poppedItem = null;
     }
 
-    void push(Int value){
-        inStack.add(value);
+    void push(int value){
+        inStack.Add(value);
         if (value > stackMax)
         {stackMax = value;}
         stackLength++;
     }
 
-    Int pop(){
+    int pop(){
         if (stackLength == 0)
         {throw new InvalidOperationException("There are no elements in stack");}
         poppedItem = inStack[stackLength - 1];
-        inStack.removeAt(stackLength - 1);
+        inStack.RemoveAt(stackLength - 1);
         stackLength--;
         return poppedItem;
     }
-
-    Int max(){
+    int max(){
         if (stackLength == 0)
         {throw new InvalidOperationException("There are no elements in stack");}
         return stackMax;
     }
-
-    static void Main(string[] args){
-        myStack exampleStack = new myStack();
+	
+	public static void Main()
+	{
+		myStack exampleStack = new myStack();
         exampleStack.push(400);
         exampleStack.push(98);
         exampleStack.push(42);
         exampleStack.push(10);
         int num = exampleStack.pop();
         exampleStack.push(24);
-        console.log(num);
-        console.log(exampleStack.max);
-        console.log(exampleStack);
-    }
+		int maxVal = exampleStack.max();
+        Console.WriteLine(num);
+        Console.WriteLine(maxVal);
+		for(int i = 0; i < exampleStack.stackLength; i++){
+			Console.WriteLine(exampleStack.inStack[i]);
+		}
+	}
 }
