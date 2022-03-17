@@ -17,9 +17,10 @@ using System.Collections.Generic;
 public class myStack
 {
 	List<int> inStack = new List<int>();
-    int stackMax;
+    List<int> stackMax = new List<int>();
     int stackLength;
     int poppedItem;
+    int maxLength;
 
     myStack(){
         inStack = new List<int>();
@@ -28,8 +29,16 @@ public class myStack
 
     void push(int value){
         inStack.Add(value);
-        if (value > stackMax)
-        {stackMax = value;}
+        if (maxLength == 0){
+            stackMax.Add(value);
+            maxLength++;
+        }
+        else {
+            if (value >= stackMax[maxLength - 1]){
+                stackMax.Add(value);
+                maxLength++;
+            }
+        }
         stackLength++;
     }
 
@@ -39,13 +48,18 @@ public class myStack
         poppedItem = inStack[stackLength - 1];
         inStack.RemoveAt(stackLength - 1);
         stackLength--;
+        if (poppedItem == stackMax[maxLength - 1]){
+            stackMax.RemoveAt(maxLength - 1);
+            maxLength--;
+        }
+        
         return poppedItem;
     }
     
     int max(){
         if (stackLength == 0)
         {throw new InvalidOperationException("There are no elements in stack");}
-        return stackMax;
+        return stackMax[maxLength - 1];
     }
 	
 	public static void Main()
