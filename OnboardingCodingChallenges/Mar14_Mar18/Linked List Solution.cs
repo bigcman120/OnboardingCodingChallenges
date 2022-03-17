@@ -10,26 +10,25 @@ Do this in 0( m + n) time (where m and n are the lengths of the lists) and const
 */
 using System;
 					
-public class Node
+public class myNode
 {
 	int value;
     Boolean evaluated;
-    Node next;
+    myNode next;
 
-    Node(){
+    myNode(){
         value = 0;
         next = null;
         evaluated = false;
     }
 
-    Node(int val, Node n){
+    myNode(int val, myNode n){
         value = val;
         next = n;
         evaluated = false;
     }
 	
-	public static void Main(){
-		Node findIntersection(Node A, Node B){
+	static myNode findIntersection(myNode A, myNode B){
             while(A.next != null){
                 A.evaluated = true;
                 A = A.next;
@@ -40,27 +39,31 @@ public class Node
                 B.evaluated = true;
                 B = B.next;
             }
-			Node badNode = new Node();
+			myNode badNode = new myNode();
 			return badNode;
         }
 
-        void cleanUp(Node n){
+        static void cleanUp(myNode n){
             while(n.next != null){
                 n.evaluated = false;
                 n = n.next;
             }
         }
+	
+	public static void Main(){
 
-        Node a4 = new Node();
+        myNode a4 = new myNode();
         a4.value = 10;
-        Node a3 = new Node(8, a4);
-        Node a2 = new Node(7, a3);
-        Node a1 = new Node(3, a2);
+        myNode a3 = new myNode(8, a4);
+        myNode a2 = new myNode(7, a3);
+        myNode a1 = new myNode(3, a2);
 
-        Node b2 = new Node(1, a3);
-        Node b1 = new Node(99, b2);
+        myNode b2 = new myNode(1, a3);
+        myNode b1 = new myNode(99, b2);
 
-        Node intersectNode = findIntersection(a1, b1);
+        myNode intersectNode = myNode.findIntersection(a1, b1);
         Console.WriteLine(intersectNode.value);
+        myNode.cleanUp(a1);
+        myNode.cleanUp(b1);
 	}
 }

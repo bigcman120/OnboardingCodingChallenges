@@ -41,6 +41,7 @@ public class myStack
         stackLength--;
         return poppedItem;
     }
+    
     int max(){
         if (stackLength == 0)
         {throw new InvalidOperationException("There are no elements in stack");}
